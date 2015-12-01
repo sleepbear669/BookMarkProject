@@ -33,7 +33,7 @@ CREATE TABLE  IF NOT EXISTS bookmark_card
   member_id INT NOT NULL ,
   book_id   INT NOT NULL ,
   tag       VARCHAR(100),
-  pharse VARCHAR(1000) NOT NULL ,
+  phrase VARCHAR(1000) NOT NULL ,
   FOREIGN KEY(member_id) REFERENCES member(id)
     ON DELETE CASCADE,
   FOREIGN KEY (book_id) REFERENCES book(id)
