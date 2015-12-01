@@ -12,6 +12,8 @@ public class Book {
 
     private String introduce;
 
+    private String publisher;
+
     public Book() {
     }
 
@@ -26,8 +28,6 @@ public class Book {
     public long getId() {
         return id;
     }
-
-    private String publisher;
     public String getTitle() {
         return title;
     }
