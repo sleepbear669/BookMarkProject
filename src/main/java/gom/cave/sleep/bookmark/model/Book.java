@@ -10,6 +10,13 @@ public class Book {
     private String publisher;
     private String introduce;
 
+    public Book(long id, String writer, String publisher, String introduce) {
+        this.id = id;
+        this.writer = writer;
+        this.publisher = publisher;
+        this.introduce = introduce;
+    }
+
     public long getId() {
         return id;
     }

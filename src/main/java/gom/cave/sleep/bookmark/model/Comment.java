@@ -9,6 +9,12 @@ public class Comment {
     private long bookMarkCardId;
     private String Comment;
 
+    public Comment(long id, long bookMarkCardId, String comment) {
+        this.id = id;
+        this.bookMarkCardId = bookMarkCardId;
+        Comment = comment;
+    }
+
     public long getId() {
         return id;
     }

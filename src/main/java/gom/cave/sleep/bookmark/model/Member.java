@@ -6,9 +6,20 @@ package gom.cave.sleep.bookmark.model;
 public class Member {
 
     private long id;
-    String email;
-    String password;
-    String nickName;
+    private String email;
+    private String password;
+    private String nickname;
+
+    public Member() {
+    }
+
+    public Member(long id, String email, String password, String nickname) {
+
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.nickname = nickname;
+    }
 
     public long getId() {
         return id;
@@ -30,11 +41,11 @@ public class Member {
         this.password = password;
     }
 
-    public String getNickName() {
-        return nickName;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setNickname(String nickName) {
+        this.nickname = nickName;
     }
 }
