@@ -8,17 +8,17 @@ public class BookmarkCard {
     private long id;
     private long memberId;
     private long bookId;
-    private long bookMark;
+    private String phrase;
     private String tag;
 
     public BookmarkCard() {
     }
 
-    public BookmarkCard(long id, long memberId, long bookId, long bookMark, String tag) {
+    public BookmarkCard(long id, long memberId, long bookId, String pharse, String tag) {
         this.id = id;
         this.memberId = memberId;
         this.bookId = bookId;
-        this.bookMark = bookMark;
+        this.phrase = pharse;
         this.tag = tag;
     }
 
@@ -42,12 +42,12 @@ public class BookmarkCard {
         this.bookId = bookId;
     }
 
-    public long getBookMark() {
-        return bookMark;
+    public String getPhrase() {
+        return phrase;
     }
 
-    public void setBookMark(long bookMark) {
-        this.bookMark = bookMark;
+    public void setPhrase(String phrase) {
+        this.phrase = phrase;
     }
 
     public String getTag() {
