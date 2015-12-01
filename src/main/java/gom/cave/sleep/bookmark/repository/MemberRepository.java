@@ -4,13 +4,15 @@ import gom.cave.sleep.bookmark.model.Member;
 
 import java.sql.*;
 
+import static gom.cave.sleep.bookmark.repository.ConnectionMaker.makeConnection;
+
 /**
  * Created by sleepbear on 2015. 12. 1..
  */
 public class MemberRepository {
     public void add(Member member) throws ClassNotFoundException, SQLException {
 
-        final Connection connection = getConnection();
+        final Connection connection = makeConnection();
         final PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO member(email, password, nickname) VALUES (?,?,?)");
         preparedStatement.setString(1, member.getEmail());
         preparedStatement.setString(2, member.getPassword());
@@ -23,7 +25,7 @@ public class MemberRepository {
     }
 
     public Member get(String email) throws SQLException, ClassNotFoundException {
-        final Connection connection = getConnection();
+        final Connection connection = makeConnection();
         final PreparedStatement preparedStatement = connection.prepareStatement("SELECT * from member where email = ?");
         preparedStatement.setString(1, email);
 
@@ -41,7 +43,7 @@ public class MemberRepository {
     }
 
     public void delete(String email) throws SQLException, ClassNotFoundException {
-        final Connection connection = getConnection();
+        final Connection connection = makeConnection();
         final PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM member WHERE email=?");
         preparedStatement.setString(1, email);
         preparedStatement.executeUpdate();
@@ -51,8 +53,5 @@ public class MemberRepository {
 
     }
 
-    private Connection getConnection() throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.jdbc.Driver");
-        return DriverManager.getConnection("jdbc:mysql://localhost/bookmark_sharing", "bookmark", "gom0119!1");
-    }
+
 }
