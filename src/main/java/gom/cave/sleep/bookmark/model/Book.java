@@ -6,12 +6,18 @@ package gom.cave.sleep.bookmark.model;
 public class Book {
 
     private long id;
+    private String title;
+
     private String writer;
-    private String publisher;
+
     private String introduce;
 
-    public Book(long id, String writer, String publisher, String introduce) {
+    public Book() {
+    }
+
+    public Book(long id, String title, String writer, String publisher, String introduce) {
         this.id = id;
+        this.title = title;
         this.writer = writer;
         this.publisher = publisher;
         this.introduce = introduce;
@@ -19,6 +25,15 @@ public class Book {
 
     public long getId() {
         return id;
+    }
+
+    private String publisher;
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getWriter() {

@@ -11,6 +11,9 @@ public class BookmarkCard {
     private long bookMark;
     private String tag;
 
+    public BookmarkCard() {
+    }
+
     public BookmarkCard(long id, long memberId, long bookId, long bookMark, String tag) {
         this.id = id;
         this.memberId = memberId;
