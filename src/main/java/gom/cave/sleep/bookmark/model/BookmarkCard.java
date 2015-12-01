@@ -6,7 +6,7 @@ package gom.cave.sleep.bookmark.model;
 public class BookmarkCard {
 
     private long id;
-    private long userId;
+    private long memberId;
     private long bookId;
     private long bookMark;
     private String tag;
