@@ -59,3 +59,5 @@ CREATE TABLE  IF NOT EXISTS bookmarker
   FOREIGN KEY (bookmark_card_id) REFERENCES bookmark_card(id)
   ON DELETE CASCADE
 ) ENGINE = InnoDB;
+
+INSERT INTO book(title, writer, publisher, introduce) VALUES ('폴라리스 랩소디', '이영도', '황금가지', '노스윈드');
