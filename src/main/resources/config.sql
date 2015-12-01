@@ -13,14 +13,15 @@ use bookmark_sharing;
 CREATE TABLE  IF NOT EXISTS member
 (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  password VARCHAR (20) NOT NULL ,
   email VARCHAR (30) NOT NULL UNIQUE ,
+  password VARCHAR (20) NOT NULL ,
   nickname VARCHAR (20) NOT NULL
 );
 
 CREATE TABLE  IF NOT EXISTS book
 (
   id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(30) NOT NULL ,
   writer VARCHAR(20) NOT NULL ,
   publisher VARCHAR(20) NOT NULL ,
   introduce VARCHAR(500)
