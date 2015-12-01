@@ -8,4 +8,24 @@ public class Comment {
     private long id;
     private long bookMarkCardId;
     private String Comment;
+
+    public long getId() {
+        return id;
+    }
+
+    public long getBookMarkCardId() {
+        return bookMarkCardId;
+    }
+
+    public void setBookMarkCardId(long bookMarkCardId) {
+        this.bookMarkCardId = bookMarkCardId;
+    }
+
+    public String getComment() {
+        return Comment;
+    }
+
+    public void setComment(String comment) {
+        Comment = comment;
+    }
 }
