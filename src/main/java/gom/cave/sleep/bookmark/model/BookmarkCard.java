@@ -7,14 +7,14 @@ public class BookmarkCard {
 
     private long id;
     private long memberId;
-    private long bookId;
+    private Long bookId;
     private String phrase;
     private String tag;
 
     public BookmarkCard() {
     }
 
-    public BookmarkCard(long id, long memberId, long bookId, String pharse, String tag) {
+    public BookmarkCard(long id, long memberId, Long bookId, String pharse, String tag) {
         this.id = id;
         this.memberId = memberId;
         this.bookId = bookId;
@@ -34,11 +34,11 @@ public class BookmarkCard {
         this.memberId = memberId;
     }
 
-    public long getBookId() {
+    public Long getBookId() {
         return bookId;
     }
 
-    public void setBookId(long bookId) {
+    public void setBookId(Long bookId) {
         this.bookId = bookId;
     }
 
