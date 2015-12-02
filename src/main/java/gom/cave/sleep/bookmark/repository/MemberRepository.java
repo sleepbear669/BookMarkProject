@@ -1,6 +1,7 @@
 package gom.cave.sleep.bookmark.repository;
 
 import gom.cave.sleep.bookmark.model.Member;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 
@@ -9,6 +10,7 @@ import static gom.cave.sleep.bookmark.repository.ConnectionMaker.makeConnection;
 /**
  * Created by sleepbear on 2015. 12. 1..
  */
+@Repository
 public class MemberRepository {
     public void add(Member member) throws ClassNotFoundException, SQLException {
 

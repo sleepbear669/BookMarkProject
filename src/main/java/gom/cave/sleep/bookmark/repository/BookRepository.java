@@ -1,6 +1,7 @@
 package gom.cave.sleep.bookmark.repository;
 
 import gom.cave.sleep.bookmark.model.Book;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +13,7 @@ import static gom.cave.sleep.bookmark.repository.ConnectionMaker.makeConnection;
 /**
  * Created by sleepbear on 2015. 12. 2..
  */
+@Repository
 public class BookRepository {
     public Book getById(long bookId) throws SQLException, ClassNotFoundException {
         final Connection connection = makeConnection();
