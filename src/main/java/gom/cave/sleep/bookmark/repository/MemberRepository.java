@@ -26,10 +26,28 @@ public class MemberRepository {
         connection.close();
     }
 
-    public Member get(String email) throws SQLException, ClassNotFoundException {
+    public Member getByEmail(String email) throws SQLException, ClassNotFoundException {
         final Connection connection = makeConnection();
         final PreparedStatement preparedStatement = connection.prepareStatement("SELECT * from member where email = ?");
         preparedStatement.setString(1, email);
+
+        final ResultSet resultSet = preparedStatement.executeQuery();
+        resultSet.next();
+        final long id = resultSet.getLong("id");
+        final String email1 = resultSet.getString("email");
+        final String password = resultSet.getString("password");
+        final String nickname = resultSet.getString("nickname");
+
+        resultSet.close();
+        preparedStatement.close();
+        connection.close();
+        return new Member(id, email1, password, nickname);
+    }
+
+    public Member getById(long memberId) throws SQLException, ClassNotFoundException {
+        final Connection connection = makeConnection();
+        final PreparedStatement preparedStatement = connection.prepareStatement("SELECT * from member where id = ?");
+        preparedStatement.setLong(1, memberId);
 
         final ResultSet resultSet = preparedStatement.executeQuery();
         resultSet.next();
@@ -56,4 +74,17 @@ public class MemberRepository {
     }
 
 
+    public Boolean existMember(String email) throws SQLException, ClassNotFoundException {
+        final Connection connection = makeConnection();
+        final PreparedStatement preparedStatement = connection.prepareStatement("SELECT EXISTS (SELECT * FROM member where email =?) as exist;");
+        preparedStatement.setString(1, email);
+        final ResultSet resultSet = preparedStatement.executeQuery();
+        resultSet.next();
+        final int exist = resultSet.getInt("exist");
+
+        resultSet.close();
+        preparedStatement.close();
+        connection.close();
+        return exist == 1 ? true : false;
+    }
 }

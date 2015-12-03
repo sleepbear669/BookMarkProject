@@ -2,6 +2,7 @@ package gom.cave.sleep.bookmark.repository;
 
 import com.google.common.collect.Lists;
 import gom.cave.sleep.bookmark.model.BookmarkCard;
+import gom.cave.sleep.bookmark.model.dto.BookmarkCardDto;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -35,24 +36,43 @@ public class BookmarkCardRepository {
         connection.close();
     }
 
-    public List<BookmarkCard> getByMemberId(long memberId) throws SQLException, ClassNotFoundException {
+    public List<BookmarkCardDto> getByMemberId(long memberId) throws SQLException, ClassNotFoundException {
         final Connection connection = makeConnection();
-        final PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM bookmark_card WHERE member_id = ?");
+        final PreparedStatement preparedStatement = connection.prepareStatement("select bc.id, m.nickname, title, tag, phrase from bookmark_card bc join member m on bc.member_id = m.id left outer join book b on bc.book_id = b.id where bc.member_id = ?; ");
         preparedStatement.setLong(1, memberId);
         final ResultSet resultSet = preparedStatement.executeQuery();
-        List<BookmarkCard> bookmarkCardList = Lists.newArrayList();
-        while (resultSet.next()) {
-            final long id = resultSet.getLong("id");
-            final long fetchedMemberId = resultSet.getLong("member_id");
-            final long bookId = resultSet.getLong("book_id");
-            final String tag = resultSet.getString("tag");
-            final String phrase = resultSet.getString("phrase");
-            final BookmarkCard bookmarkCard = new BookmarkCard(id, fetchedMemberId, bookId, phrase, tag);
-            bookmarkCardList.add(bookmarkCard);
-        }
+
+        List<BookmarkCardDto> bookmarkCardDtoList = getBookmarkCardDtos(resultSet);
         resultSet.close();
         preparedStatement.close();
         connection.close();
-        return bookmarkCardList;
+        return bookmarkCardDtoList;
     }
+
+    private List<BookmarkCardDto> getBookmarkCardDtos(ResultSet resultSet) throws SQLException {
+        List<BookmarkCardDto> bookmarkCardDtoList = Lists.newArrayList();
+        while (resultSet.next()) {
+            final long id = resultSet.getLong("id");
+            final String nickname = resultSet.getString("nickname");
+            final String title = resultSet.getString("title");
+            final String phrase = resultSet.getString("phrase");
+            final String tag = resultSet.getString("tag");
+            bookmarkCardDtoList.add(new BookmarkCardDto(id, nickname, title, phrase, tag));
+        }
+        return bookmarkCardDtoList;
+    }
+
+    public List<BookmarkCardDto> findAll() throws SQLException, ClassNotFoundException {
+        final Connection connection = makeConnection();
+        final PreparedStatement preparedStatement = connection.prepareStatement("select bc.id, m.nickname, title, tag, phrase from bookmark_card bc join member m on bc.member_id = m.id left outer join book b on bc.book_id = b.id ");
+        final ResultSet resultSet = preparedStatement.executeQuery();
+
+        List<BookmarkCardDto> bookmarkCardDtoList = getBookmarkCardDtos(resultSet);
+        resultSet.close();
+        preparedStatement.close();
+        connection.close();
+        return bookmarkCardDtoList;
+    }
+
+
 }

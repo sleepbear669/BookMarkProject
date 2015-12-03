@@ -25,7 +25,7 @@ public class MemberRepositoryTest {
         member.setNickname(nickname);
         // When
         memberRepository.add(member);
-        final Member member1 = memberRepository.get(member.getEmail());
+        final Member member1 = memberRepository.getByEmail(member.getEmail());
         // Then
         assertThat(member1.getEmail(), is(member.getEmail()));
         assertThat(member1.getNickname(), is(member.getNickname()));
