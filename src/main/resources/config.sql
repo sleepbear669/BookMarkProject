@@ -31,13 +31,13 @@ CREATE TABLE  IF NOT EXISTS bookmark_card
 (
   id        INT AUTO_INCREMENT PRIMARY KEY,
   member_id INT NOT NULL ,
-  book_id   INT NOT NULL ,
+  book_id   INT  ,
   tag       VARCHAR(100),
   phrase VARCHAR(1000) NOT NULL ,
   FOREIGN KEY(member_id) REFERENCES member(id)
     ON DELETE CASCADE,
   FOREIGN KEY (book_id) REFERENCES book(id)
-    ON DELETE CASCADE
+    ON DELETE SET NULL
 ) ENGINE = InnoDB;
 
 CREATE TABLE  IF NOT EXISTS comments
@@ -59,5 +59,3 @@ CREATE TABLE  IF NOT EXISTS bookmarker
   FOREIGN KEY (bookmark_card_id) REFERENCES bookmark_card(id)
   ON DELETE CASCADE
 ) ENGINE = InnoDB;
-
-INSERT INTO book(title, writer, publisher, introduce) VALUES ('폴라리스 랩소디', '이영도', '황금가지', '노스윈드');
